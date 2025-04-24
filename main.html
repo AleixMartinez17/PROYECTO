@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Inicio de Sesión | Empresa Aleix</title>
+       <style>
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #2c5282;
+            --accent-color: #4299e1;
+            --dark-color: #1a202c;
+            --cyber-green: #38a169;
+            --cyber-red: #e53e3e;
+            --cyber-orange: #dd6b20;
+            --text-color: #2d3748;
+            --light-bg: #f7fafc;
+            --border-radius: 6px;
+            --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--cyber-green);
+            font-size: 1.8rem;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            display: block;
+        }
+        
+        /* Menú de navegación */
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 2rem;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            gap: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav a i {
+            font-size: 0.9rem;
+        }
+        
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1470&auto=format&fit=crop') center/cover;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Tarjetas de servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        /* Sección de autenticación */
+        .auth-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        /* Estilos para la sesión */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.4rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-danger {
+            background-color: var(--cyber-red);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c53030;
+        }
+        
+        .btn-success {
+            background-color: var(--cyber-green);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #2f855a;
+        }
+        
+        /* Dashboard preview */
+        .dashboard-preview {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            margin: 2rem 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .stat-card h3 {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-card h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card i {
+            color: var(--accent-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .back-btn {
+            display: block;
+            margin-top: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <div class="logo-text">
+                <h1>CyberShield</h1>
+                <span>Seguridad Digital Integral</span>
+            </div>
+        </div>
+    </header>
+    <div class="login-container">
+        <h2>INICIAR SESIÓN</h2>
+        <form id="loginForm" novalidate>
+            <input type="email" id="email" placeholder="Correo Electrónico" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="button" id="continueBtn">Continuar con MFA</button>
+            
+            <div id="mfa-section" style="display:none;">
+                <input type="text" id="mfa" placeholder="Código MFA">
+                <button type="button" id="verifyBtn">Verificar y Acceder</button>
+                <p><a href="#" id="showQRBtn">Configura Google Authenticator</a></p>
+            </div>
+
+            <div id="qr-section" style="display:none;">
+                <h3>Configura Google Authenticator</h3>
+                <img id="qr-image" src="" alt="QR Code">
+                <p>1. Abre la app en tu móvil</p>
+                <p>2. Escanea este código QR</p>
+                <p>3. Introduce el código de 6 dígitos</p>
+                <button type="button" id="hideQRBtn">He configurado la app</button>
+            </div>
+
+            <p id="error-message"></p>
+            <a href="registro.html">¿No tienes cuenta? Regístrate</a>
+        </form>
+    </div>
+
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Volver al portal
+        </a>
+
+    <script src="auth.js"></script>
+    <script>
+        function handleLoginAttempt(email, success) {
+    // Obtener IP aproximada (esto es básico, en producción usa un servicio real)
+    const ip = localStorage.getItem('lastKnownIP') || 'IP no disponible';
+    
+    // Registrar el intento
+    const logs = JSON.parse(localStorage.getItem('accessLogs')) || [];
+    const newLog = {
+        email: email,
+        ip: ip,
+        timestamp: new Date().toISOString(),
+        success: success
+    };
+    
+    logs.unshift(newLog);
+    localStorage.setItem('accessLogs', JSON.stringify(logs.slice(0, 50)));
+    
+    // Actualizar la IP
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            localStorage.setItem('lastKnownIP', data.ip);
+        })
+        .catch(() => {
+            localStorage.setItem('lastKnownIP', 'IP no disponible');
+        });
+}
+
+function logLoginAttempt(email, success) {
+    const logs = JSON.parse(localStorage.getItem('cybershield_access_logs')) || [];
+    const ip = localStorage.getItem('lastKnownIP') || 'IP no disponible';
+    
+    logs.unshift({
+        email: email,
+        ip: ip,
+        timestamp: new Date().toISOString(),
+        success: success
+    });
+    
+    localStorage.setItem('cybershield_access_logs', JSON.stringify(logs.slice(0, 100)));
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+:root {
+    --primary-color: #2b6cb0;
+    --secondary-color: #2c5282;
+    --accent-color: #4299e1;
+    --dark-color: #1a202c;
+    --cyber-green: #38a169;
+    --cyber-red: #e53e3e;
+    --cyber-orange: #dd6b20;
+    --text-color: #2d3748;
+    --light-bg: #f7fafc;
+    --border-radius: 6px;
+    --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 60px;
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 1.5rem 2rem;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+.auth-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: var(--border-radius);
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.auth-btn:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.logout-btn {
+    background-color: var(--cyber-red);
+}
+
+.logout-btn:hover {
+    background-color: #c53030;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 1rem;
+}
+
+nav {
+    background-color: var(--dark-color);
+    padding: 1rem 2rem;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+nav a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+    transition: all 0.3s;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+footer {
+    background-color: var(--dark-color);
+    text-align: center;
+    padding: 2rem;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Estilos específicos para login */
+.login-container {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.login-container h2 {
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    background-color: white;
+    color: var(--text-color);
+}
+
+.login-container input:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.login-container button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.login-container button:hover {
+    background-color: var(--accent-color);
+}
+
+#error-message {
+    color: var(--cyber-red);
+    margin: 15px 0;
+    min-height: 20px;
+}
+
+.login-container a {
+    color: var(--accent-color);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+.loader {
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top: 3px solid var(--accent-color);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#qr-section {
+    margin-top: 20px;
+}
+
+#qr-image {
+    width: 200px;
+    height: 200px;
+    margin: 10px auto;
+    display: block;
+}
+
+/* Adaptación de elementos adicionales del nuevo diseño */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo i {
+    color: var(--cyber-green);
+    font-size: 1.8rem;
+}
+
+.logo-text h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.logo-text span {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    display: block;
+}
+
+nav a i {
+    font-size: 0.9rem;
+}

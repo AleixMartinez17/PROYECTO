@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Registro de Usuario | Empresa Aleix</title>
+    <style>
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #2c5282;
+            --accent-color: #4299e1;
+            --dark-color: #1a202c;
+            --cyber-green: #38a169;
+            --cyber-red: #e53e3e;
+            --cyber-orange: #dd6b20;
+            --text-color: #2d3748;
+            --light-bg: #f7fafc;
+            --border-radius: 6px;
+            --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--cyber-green);
+            font-size: 1.8rem;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            display: block;
+        }
+        
+        /* Menú de navegación */
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 2rem;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            gap: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav a i {
+            font-size: 0.9rem;
+        }
+        
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1470&auto=format&fit=crop') center/cover;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        /* Sección de autenticación */
+        .auth-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.4rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-danger {
+            background-color: var(--cyber-red);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c53030;
+        }
+        
+        .btn-success {
+            background-color: var(--cyber-green);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #2f855a;
+        }
+        
+        /* Dashboard preview */
+        .dashboard-preview {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            margin: 2rem 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .stat-card h3 {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-card h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card i {
+            color: var(--accent-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+    </style>
+    </style>
+</head>
+<body>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <div class="logo-text">
+                <h1>CyberShield</h1>
+                <span>Seguridad Digital Integral</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <h2>REGISTRO DE USUARIO</h2>
+        <input type="text" id="name" placeholder="Nombre Completo" required>
+        <input type="email" id="email" placeholder="Correo Electrónico" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button id="registerBtn">Registrarse</button>
+        
+        <div id="qr-section" style="display: none; text-align: center; margin-top: 20px;">
+            <h3>Configura Google Authenticator</h3>
+            <img id="qr-image" src="" alt="QR Code" style="width: 200px; height: 200px;">
+            <p>1. Abre Google Authenticator en tu móvil</p>
+            <p>2. Escanea este código QR</p>
+            <p>3. Guarda estos códigos de respaldo:</p>
+            <div id="backup-codes" style="font-family: monospace; margin: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px;"></div>
+            <button onclick="window.location.href='main.html'">Continuar al Login</button>
+        </div>
+        
+        <p id="error-message"></p>
+        <a href="main.html">¿Ya tienes cuenta? Inicia sesión</a>
+    </div>
+
+    <script>
+        document.getElementById('registerBtn').addEventListener('click', register);
+
+        async function register() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const errorElement = document.getElementById("error-message");
+
+            if (!name || !email || !password) {
+                errorElement.textContent = "Por favor, completa todos los campos.";
+                return;
+            }
+
+            try {
+                errorElement.textContent = "Registrando...";
+                
+                const response = await fetch("http://localhost:3000/register", {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Origin": "http://localhost"
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || "Error en el registro");
+                }
+
+                document.getElementById("qr-image").src = data.qrCodeDataURL;
+                document.getElementById("backup-codes").innerHTML = 
+                    data.backupCodes.map(code => `<div>${code}</div>`).join('');
+                document.getElementById("qr-section").style.display = "block";
+                errorElement.textContent = "";
+                
+            } catch (err) {
+                errorElement.textContent = `Error al registrar: ${err.message}`;
+                console.error("Error detallado:", err);
+            }
+        }
+    </script>
+</body>
+</html>
