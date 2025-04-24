@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-// Configuración de la base de datos (sin cambios)
+// Configuración de la base de datos
 const pool = mysql.createPool({
     host: process.env.DB_HOST || "localhost",
     user: process.env.DB_USER || "root",
